@@ -11,6 +11,18 @@
 	box-sizing: border-box;
 }
 
+.nowrap {
+	white-space: nowrap;
+}
+
+.btn-disabled {
+	cursor: not-allowed;
+}
+
+.btn-disabled:hover {
+	background-color: #0f2e17;
+}
+
 body,
 a,
 button {
