@@ -7,13 +7,24 @@ article#container p {
 	font-size: 2.4rem;
 }
 
-article#container a.home-btn {
+article#container .home-btn {
 	padding: 0.6rem 0;
 	width: 200px;
 
 	align-self: center;
 
 	font-size: 2.2rem;
+}
+
+.home-btn span:last-child {
+	display: none;
+}
+
+.home-btn:hover > span:first-child {
+	display: none;
+}
+.home-btn:hover > span:last-child {
+	display: block;
 }
 
 @media screen and (min-width: 768px) {
@@ -35,7 +46,7 @@ article#container a.home-btn {
 		font-size: 2.8rem;
 	}
 
-	article#container a.home-btn {
+	article#container .home-btn {
 		padding: 1rem 0;
 		width: 250px;
 
