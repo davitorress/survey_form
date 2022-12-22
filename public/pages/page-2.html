@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Survey Form - Page 2</title>
+
+		<link rel="stylesheet" href="/src/global/global.css" />
+		<link rel="stylesheet" href="./app.css" />
+	</head>
+
+	<body>
+		<main>
+			<figure>
+				<img src="/src/img/img-2.svg" alt="" />
+			</figure>
+
+			<article id="container">
+				<section class="content">
+					<form>
+						<section>
+							<fieldset>
+								<label for="account_status">What is the status of your account?</label>
+								<select name="account_status" id="account_status">
+									<option value="" disabled selected></option>
+									<option value="0">I have not created an account yet</option>
+									<option value="1">I already have an account</option>
+									<option value="2">My account was inactive</option>
+								</select>
+							</fieldset>
+
+							<fieldset class="radio-input">
+								<legend class="nowrap">In which financial markets do you operate?</legend>
+
+								<div>
+									<input type="radio" name="financial_market" id="stock_market" value="0" />
+									<label for="stock_market">stock market</label>
+								</div>
+
+								<div>
+									<input type="radio" name="financial_market" id="foreign_exchange" value="1" />
+									<label for="foreign_exchange">foreign exchange</label>
+								</div>
+
+								<div>
+									<input type="radio" name="financial_market" id="commodity" value="2" />
+									<label for="commodity">commodity</label>
+								</div>
+
+								<div>
+									<input type="radio" name="financial_market" id="bond_market" value="3" />
+									<label for="bond_market">bond market</label>
+								</div>
+
+								<div>
+									<input type="radio" name="financial_market" id="cryptocurrency_market" value="4" />
+									<label for="cryptocurrency_market">cryptocurrency market</label>
+								</div>
+							</fieldset>
+						</section>
+
+						<footer>
+							<div class="two-btn">
+								<button type="reset">
+									<a href="./page-1.html">Back</a>
+								</button>
+
+								<button type="submit">Next</button>
+							</div>
+
+							<div class="single-btn">
+								<button type="reset" class="btn">
+									<a href="./page-3.html">Skip</a>
+								</button>
+							</div>
+						</footer>
+					</form>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>
