@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Survey Form - Page 3</title>
+
+		<link rel="stylesheet" href="/src/global/global.css" />
+		<link rel="stylesheet" href="./app.css" />
+	</head>
+
+	<body>
+		<main>
+			<figure>
+				<img src="/src/img/img-3.svg" alt="" />
+			</figure>
+
+			<article id="container">
+				<section class="content">
+					<form>
+						<section>
+							<fieldset>
+								<label for="account_status">How do you decide to invest?</label>
+								<select name="account_status" id="account_status">
+									<option value="" disabled selected></option>
+									<option value="0">I have not invested yet</option>
+									<option value="1">I want safe investments</option>
+									<option value="2">I want investments with high return</option>
+								</select>
+							</fieldset>
+
+							<fieldset class="check-input">
+								<legend>What resources have you used or are you using for your training?</legend>
+
+								<div>
+									<input type="checkbox" name="check" id="books_article" value="0" />
+									<label for="books_article">Books and articles</label>
+								</div>
+
+								<div>
+									<input type="checkbox" name="check" id="tutorial_videos" value="1" />
+									<label for="tutorial_videos">YouTube tutorial videos</label>
+								</div>
+
+								<div>
+									<input type="checkbox" name="check" id="courses" value="2" />
+									<label for="courses">Online or face to face courses</label>
+								</div>
+
+								<div>
+									<input type="checkbox" name="check" id="little_investment" value="3" />
+									<label for="little_investment">Experience with little investment</label>
+								</div>
+							</fieldset>
+						</section>
+
+						<footer>
+							<div class="two-btn">
+								<button type="reset">
+									<a href="./page-2.html">Back</a>
+								</button>
+
+								<button type="submit">Next</button>
+							</div>
+
+							<div class="single-btn">
+								<button type="reset" class="btn">
+									<a href="./page-4.html">Skip</a>
+								</button>
+							</div>
+						</footer>
+					</form>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>
