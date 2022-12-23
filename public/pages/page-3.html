@@ -8,6 +8,7 @@
 
 		<link rel="stylesheet" href="/src/global/global.css" />
 		<link rel="stylesheet" href="./app.css" />
+		<script type="module" src="/dist/app.js"></script>
 	</head>
 
 	<body>
@@ -18,15 +19,15 @@
 
 			<article id="container">
 				<section class="content">
-					<form>
+					<form action="/public/pages/page-4.html">
 						<section>
 							<fieldset>
 								<label for="investment_type">How do you decide to invest?</label>
 								<select name="investment_type" id="investment_type">
 									<option value="" disabled selected></option>
-									<option value="0">I have not invested yet</option>
-									<option value="1">I want safe investments</option>
-									<option value="2">I want investments with high return</option>
+									<option value="Start-up investments">I have not invested yet</option>
+									<option value="Safe investments">I want safe investments</option>
+									<option value="Risk investments">I want investments with high return</option>
 								</select>
 							</fieldset>
 
@@ -34,22 +35,46 @@
 								<legend>What resources have you used or are you using for your training?</legend>
 
 								<div>
-									<input type="checkbox" name="check" id="books_article" value="0" />
+									<input
+										type="checkbox"
+										name="resources_training"
+										id="books_article"
+										class="check"
+										value="Books and article"
+									/>
 									<label for="books_article">Books and articles</label>
 								</div>
 
 								<div>
-									<input type="checkbox" name="check" id="tutorial_videos" value="1" />
+									<input
+										type="checkbox"
+										name="resources_training"
+										id="tutorial_videos"
+										class="check"
+										value="YouTube tutorial videos"
+									/>
 									<label for="tutorial_videos">YouTube tutorial videos</label>
 								</div>
 
 								<div>
-									<input type="checkbox" name="check" id="courses" value="2" />
+									<input
+										type="checkbox"
+										name="resources_training"
+										id="courses"
+										class="check"
+										value="Online or face to face courses"
+									/>
 									<label for="courses">Online or face to face courses</label>
 								</div>
 
 								<div>
-									<input type="checkbox" name="check" id="little_investment" value="3" />
+									<input
+										type="checkbox"
+										name="resources_training"
+										id="little_investment"
+										class="check"
+										value="Experience with little investment"
+									/>
 									<label for="little_investment">Experience with little investment</label>
 								</div>
 							</fieldset>
@@ -57,11 +82,9 @@
 
 						<footer>
 							<div class="two-btn">
-								<button type="reset">
-									<a href="./page-2.html">Back</a>
-								</button>
+								<button type="reset" class="backBtn">Back</button>
 
-								<button type="submit">Next</button>
+								<button type="submit" class="nextBtn">Next</button>
 							</div>
 
 							<div class="single-btn">
