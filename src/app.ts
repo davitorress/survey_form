@@ -55,7 +55,19 @@ const survey = JSON.parse(localStorage.getItem("survey")!) || {
 // Clean LocalStorage
 console.log(document.location.pathname);
 if (document.location.pathname === "/public/") {
-	localStorage.setItem("survey", JSON.stringify(survey));
+	localStorage.setItem(
+		"survey",
+		JSON.stringify({
+			account_status: "",
+			financial_market: "",
+			investment_type: "",
+			resources_training: "",
+			loss_details: "",
+			full_name: "",
+			email: "",
+			age: 0,
+		})
+	);
 }
 
 // Select input
