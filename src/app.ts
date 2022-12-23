@@ -2,6 +2,16 @@
 class NavigationEvent {
 	static instance: NavigationEvent;
 
+	paths: string[] = [
+		"/public/",
+		"/public/pages/page-1.html",
+		"/public/pages/page-2.html",
+		"/public/pages/page-3.html",
+		"/public/pages/page-4.html",
+		"/public/pages/page-5.html",
+		"/public/pages/thanks.html",
+	];
+
 	constructor() {}
 
 	static getInstance() {
@@ -11,28 +21,22 @@ class NavigationEvent {
 	}
 
 	// Navigation Method
-	navigate(element: HTMLElement, href: string): void {
+	navigate(element: HTMLElement, pathname: string, back?: boolean): void {
 		element?.addEventListener("click", (e: Event) => {
 			e.preventDefault();
-			window.location.href = href;
+
+			const pathIndex = this.paths.indexOf(pathname);
+			if (back) window.location.pathname = this.paths[pathIndex - 1];
+			else window.location.pathname = this.paths[pathIndex + 1];
 		});
 	}
 }
 const nav = NavigationEvent.getInstance();
 
-// Back to Home button
-const homeBtn = document.getElementById("homeBtn")! as HTMLButtonElement;
-if (homeBtn) nav.navigate(homeBtn, "/public/pages/page-1.html");
-
 // Back button
 const backBtn = document.querySelector(".backBtn")! as HTMLButtonElement;
-if (backBtn) {
-	backBtn.addEventListener("click", () => {
-		window.history.back();
-	});
-}
+if (backBtn) nav.navigate(backBtn, window.location.pathname, true);
 
-// Next button
-const form = document.querySelector("form")! as HTMLFormElement;
-const nextBtn = document.querySelector(".nextBtn")! as HTMLButtonElement;
-if (nextBtn) nav.navigate(nextBtn, form ? form.action : "/public/pages/page-2.html");
+// Skip button
+const skipBtn = document.querySelector(".skipBtn")! as HTMLButtonElement;
+if (skipBtn) nav.navigate(skipBtn, window.location.pathname);
