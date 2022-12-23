@@ -17,9 +17,11 @@
 
 .btn-disabled {
 	cursor: not-allowed;
+	background-color: #0f2e17;
 }
 
 .btn-disabled:hover {
+	color: #fff;
 	background-color: #0f2e17;
 }
 
