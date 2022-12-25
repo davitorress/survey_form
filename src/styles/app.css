@@ -4,6 +4,8 @@ figure img {
 
 article#container {
 	gap: 2rem;
+	width: 100%;
+	max-width: 45rem;
 }
 
 article#container h1 {
@@ -20,7 +22,7 @@ form {
 	row-gap: 3rem;
 
 	padding: 2rem 0;
-	max-width: 45rem;
+	width: 100%;
 
 	text-align: left;
 }
@@ -50,7 +52,7 @@ form fieldset.person-input {
 }
 
 form fieldset.person-input input {
-	width: 24rem;
+	width: 100%;
 	padding: 0.8rem;
 
 	border-radius: 20px;
@@ -83,7 +85,7 @@ form fieldset textarea {
 form fieldset select {
 	appearance: none;
 
-	padding: 0.5rem 2rem;
+	padding: 0.5rem 2.5rem;
 	width: 100%;
 
 	border: 1px solid #00000040;
@@ -91,7 +93,7 @@ form fieldset select {
 
 	background-repeat: no-repeat;
 	background-position: 3% center;
-	background-image: url(/src/img/arrow.svg);
+	background-image: url(/img/arrow.svg);
 }
 
 form fieldset.radio-input,
@@ -180,7 +182,6 @@ button.btn {
 
 @media screen and (min-width: 768px) {
 	main {
-		width: 70rem;
 		gap: 4rem;
 	}
 
@@ -198,10 +199,6 @@ button.btn {
 }
 
 @media screen and (min-width: 1024px) {
-	main {
-		width: 95rem;
-	}
-
 	figure img {
 		width: 42rem;
 	}
@@ -217,10 +214,6 @@ button.btn {
 		font-size: 2rem;
 	}
 
-	form fieldset.person-input input {
-		width: 35rem;
-	}
-
 	form fieldset select,
 	form fieldset textarea,
 	form fieldset.person-input input,
@@ -233,7 +226,7 @@ button.btn {
 	}
 
 	form fieldset select {
-		padding: 0.5rem 2.4rem;
+		padding: 0.5rem 3rem;
 	}
 
 	form fieldset.radio-input div label::before,
@@ -281,19 +274,11 @@ button.btn {
 		font-size: 2.4rem;
 	}
 
-	form fieldset.person-input input {
-		width: 40rem;
-	}
-
 	form fieldset select,
 	form fieldset.radio-input div label,
 	form fieldset.check-input div label,
 	form footer div.two-btn button,
 	form footer div.single-btn button {
 		font-size: 2rem;
-	}
-
-	form fieldset select {
-		padding: 0.5rem 2.4rem;
 	}
 }

@@ -3,13 +3,13 @@ class NavigationEvent {
 	private static instance: NavigationEvent;
 
 	paths: string[] = [
-		"/public/",
-		"/public/pages/page-1.html",
-		"/public/pages/page-2.html",
-		"/public/pages/page-3.html",
-		"/public/pages/page-4.html",
-		"/public/pages/page-5.html",
-		"/public/pages/thanks.html",
+		"/",
+		"/pages/page-1.html",
+		"/pages/page-2.html",
+		"/pages/page-3.html",
+		"/pages/page-4.html",
+		"/pages/page-5.html",
+		"/pages/thanks.html",
 	];
 
 	constructor() {}
@@ -27,7 +27,7 @@ class NavigationEvent {
 
 			const pathIndex = this.paths.indexOf(pathname);
 			if (back) window.location.pathname = this.paths[pathIndex - 1];
-			else window.location.pathname = this.paths[pathIndex + 1];
+			else window.location.pathname = this.paths[pathIndex + 1] ? this.paths[pathIndex + 1] : this.paths[0];
 		});
 	}
 }
@@ -53,7 +53,7 @@ const survey = JSON.parse(localStorage.getItem("survey")!) || {
 };
 
 // Clean LocalStorage
-if (document.location.pathname === "/public/") {
+if (document.location.pathname === "/") {
 	localStorage.setItem(
 		"survey",
 		JSON.stringify({
@@ -70,31 +70,21 @@ if (document.location.pathname === "/public/") {
 }
 
 // Select input
-const selectInput = document.querySelector("select")! as HTMLSelectElement;
+const selectInput = document.querySelector("select") as HTMLSelectElement;
 if (selectInput) {
 	if (survey[selectInput.id]) selectInput.value = survey[selectInput.id];
-
-	// selectInput.addEventListener("change", () => {
-	// 	survey[selectInput.id] = selectInput.value;
-	// 	localStorage.setItem("survey", JSON.stringify(survey));
-	// });
 }
 
 // Radio input
-const radioInput: HTMLInputElement[] = document.querySelectorAll(".radio")! as any;
+const radioInput: HTMLInputElement[] = document.querySelectorAll(".radio") as any;
 if (radioInput) {
 	radioInput.forEach((radio: HTMLInputElement) => {
 		if (survey[radio.name] !== "" && radio.value === survey[radio.name]) radio.checked = true;
-
-		// radio.addEventListener("click", () => {
-		// 	survey[radio.name] = radio.value;
-		// 	localStorage.setItem("survey", JSON.stringify(survey));
-		// });
 	});
 }
 
 // Checkbox
-const checkInput: HTMLInputElement[] = document.querySelectorAll(".check")! as any;
+const checkInput: HTMLInputElement[] = document.querySelectorAll(".check") as any;
 const checkValues: string[] = [];
 if (checkInput) {
 	const checkedArray = survey.resources_training.split(",");
@@ -102,58 +92,68 @@ if (checkInput) {
 	checkInput.forEach((check: HTMLInputElement) => {
 		if (checkedArray.includes(check.value)) check.checked = true;
 
-		// check.addEventListener("change", () => {
-		// 	if (!checkValues.includes(check.value)) checkValues.push(check.value);
-		// 	else {
-		// 		const position = checkValues.findIndex((value: string) => value === check.value);
-		// 		checkValues.splice(position, 1);
-		// 	}
-		// 	survey[check.name] = `${checkValues}`;
-		// 	localStorage.setItem("survey", JSON.stringify(survey));
-		// });
+		check.addEventListener("change", () => {
+			disableBtn();
+		});
 	});
 }
 
 // TextArea
-const textAreaInput = document.querySelector("textarea")! as HTMLTextAreaElement;
+const textAreaInput = document.querySelector("textarea") as HTMLTextAreaElement;
 if (textAreaInput) {
 	if (survey[textAreaInput.id] !== "") textAreaInput.value = survey[textAreaInput.id];
 
-	// textAreaInput.addEventListener("keydown", (e: Event) => {
-	// 	survey[textAreaInput.id] = textAreaInput.value;
-	// 	localStorage.setItem("survey", JSON.stringify(survey));
-	// });
+	const textLength = document.querySelector("#text_length")! as HTMLElement;
+
+	const max = 130;
+	textAreaInput.maxLength = max;
+	textLength.innerHTML = `Characters: ${textAreaInput.value.length}/${max}`;
+
+	textAreaInput.addEventListener("input", (e: Event) => {
+		const counter = textAreaInput.value.length;
+		textLength.innerHTML = `Characters: ${counter}/${max}`;
+	});
 }
 
 // Name Input
-const nameInput = document.querySelector("#full_name")! as HTMLInputElement;
+const nameInput = document.querySelector("#full_name") as HTMLInputElement;
 if (nameInput) {
-	if (survey[nameInput.id] !== "") nameInput.value = survey[nameInput.id];
+	let isValid = true;
 
-	// nameInput.addEventListener("keydown", (e: Event) => {
-	// 	survey[nameInput.id] = nameInput.value;
-	// 	localStorage.setItem("survey", JSON.stringify(survey));
-	// });
+	nameInput.addEventListener("input", (e: Event) => {
+		const nameRegex = /\b[A-Za-zÀ-ú][A-Za-zÀ-ú]+,?\s[A-Za-zÀ-ú][A-Za-zÀ-ú]{2,19}\b/gi;
+		isValid = validation.validateRegex(nameRegex, nameInput);
+		if (!isValid) disableBtn(true);
+	});
 }
 
 // Email Input
-const emailInput = document.querySelector("#email")! as HTMLInputElement;
+const emailInput = document.querySelector("#email") as HTMLInputElement;
 if (emailInput) {
-	// emailInput.addEventListener("keydown", (e: Event) => {
-	// 	survey[emailInput.id] = emailInput.value;
-	// 	localStorage.setItem("survey", JSON.stringify(survey));
-	// });
+	let isValid = true;
+
+	emailInput.addEventListener("input", (e: Event) => {
+		const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/g;
+		isValid = validation.validateRegex(emailRegex, emailInput);
+	});
+
+	setInterval(() => {
+		if (!isValid) disableBtn(true);
+	}, 100);
 }
 
 // Age Input
-const ageInput = document.querySelector("#age")! as HTMLInputElement;
+const ageInput = document.querySelector("#age") as HTMLInputElement;
 if (ageInput) {
-	// ["click", "keydown"].forEach((eventType: string) =>
-	// 	ageInput.addEventListener(eventType, (e: Event) => {
-	// 		survey[ageInput.id] = +ageInput.value;
-	// 		localStorage.setItem("survey", JSON.stringify(survey));
-	// 	})
-	// );
+	ageInput.maxLength = 2;
+
+	ageInput.addEventListener("input", (e: Event) => {
+		if (ageInput.value.length > ageInput.maxLength) ageInput.value = ageInput.value.slice(0, ageInput.maxLength);
+
+		const numberRegex = /^[0-9]{1,}$/;
+		let isValid = validation.validateRegex(numberRegex, ageInput);
+		if (!isValid) disableBtn(true);
+	});
 }
 
 // Submit
@@ -199,6 +199,10 @@ const submit = Submit.getInstance();
 // Next button
 const nextBtn = document.querySelector(".nextBtn")! as HTMLButtonElement;
 if (nextBtn) {
+	setInterval(() => {
+		disableBtn();
+	}, 1000);
+
 	nextBtn.addEventListener("click", (e: Event) => {
 		e.preventDefault();
 
@@ -215,4 +219,11 @@ if (nextBtn) {
 		}
 	});
 	nav.navigate(nextBtn, window.location.pathname);
+}
+
+function disableBtn(disable?: boolean) {
+	const isValid = validation.isNotEmpty() && validation.isSelected();
+	nextBtn.disabled = disable ? disable : !isValid;
+	if (nextBtn.disabled) nextBtn.classList.add("btn-disabled");
+	else nextBtn.classList.remove("btn-disabled");
 }

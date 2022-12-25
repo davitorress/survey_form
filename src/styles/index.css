@@ -2,6 +2,10 @@ figure#home-img {
 	transform: translateX(-12.5%);
 }
 
+article#container h1#nameMsg {
+	font-size: 4rem;
+}
+
 article#container p {
 	font-weight: 700;
 	font-size: 2.4rem;

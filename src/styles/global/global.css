@@ -11,10 +11,6 @@
 	box-sizing: border-box;
 }
 
-.nowrap {
-	white-space: nowrap;
-}
-
 .btn-disabled {
 	cursor: not-allowed;
 	background-color: #0f2e17;
@@ -75,7 +71,7 @@ body {
 
 main {
 	margin: 0 auto;
-	width: 30rem;
+	width: 90%;
 	min-height: 100vh;
 
 	display: flex;
@@ -108,7 +104,6 @@ article#container h1 {
 
 @media screen and (min-width: 768px) {
 	main {
-		width: 75rem;
 		flex-direction: row;
 		justify-content: space-around;
 	}
@@ -120,10 +115,6 @@ article#container h1 {
 }
 
 @media screen and (min-width: 1024px) {
-	main {
-		width: 95rem;
-	}
-
 	figure img {
 		width: 32rem;
 	}
