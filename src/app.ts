@@ -129,6 +129,12 @@ if (document.location.pathname === "/") {
 	);
 }
 
+// Thank you message
+const nameMsg = document.querySelector("#nameMsg") as HTMLHeadingElement;
+if (nameMsg) {
+	if (survey.full_name !== "") nameMsg.innerHTML = `Thanks, ${survey.full_name}`;
+}
+
 // Select input
 const selectInput = document.querySelector("select") as HTMLSelectElement;
 if (selectInput) {
